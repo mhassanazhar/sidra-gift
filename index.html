@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For Sidra</title>
+<style>
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;background:#05030f;color:#fff;font-family:Georgia,serif;overflow:hidden}
+#c{position:fixed;inset:0;display:block;touch-action:none}
+.p{position:fixed;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;z-index:5;overflow:auto}
+.p.on{display:flex;animation:fi 1s}
+@keyframes fi{from{opacity:0}}
+h1{font-size:clamp(26px,7vw,48px);color:#ffd98a;text-shadow:0 0 20px #ff7ab8,0 0 40px #8b5cf6;margin:10px}
+p{max-width:480px;line-height:1.6;font-size:18px;margin:8px;color:#fbe9ff}
+.b{background:linear-gradient(135deg,#ffd36e,#ff7ab8);color:#2a0a3a;border:0;border-radius:30px;padding:13px 28px;font:bold 17px Georgia,serif;margin:8px;cursor:pointer;box-shadow:0 0 24px #ff7ab888}
+.b:active{transform:scale(.95)}
+.h{display:none!important}
+input{padding:13px;border-radius:24px;border:1px solid #ffd36e;background:#ffffff14;color:#fff;font-size:18px;text-align:center;width:230px;outline:0;box-shadow:0 0 20px #ffd36e44}
+#cap{position:fixed;left:0;right:0;top:12%;text-align:center;z-index:6;font-size:clamp(20px,5vw,34px);text-shadow:0 0 18px #ff7ab8;padding:0 20px;opacity:0;transition:opacity 1s;pointer-events:none;font-style:italic}
+#cap.on{opacity:1}
+#bar{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,#ffd36e,#ff7ab8);z-index:9;transition:width .6s}
+#mus{position:fixed;top:10px;right:10px;z-index:9;margin:0;padding:6px 12px;font-size:14px}
+.lk{font-size:70px;animation:gl 2s infinite alternate}
+@keyframes gl{to{filter:drop-shadow(0 0 25px #ffd36e)}}
+.ring{position:fixed;left:50%;top:50%;width:20px;height:20px;margin:-10px 0 0 -10px;border:3px solid #ffd36e;border-radius:50%;z-index:9;pointer-events:none;animation:rg 1.3s forwards}
+@keyframes rg{to{transform:scale(140);opacity:0}}
+#er{color:#ff9ab8;min-height:24px;font-size:15px}
+.sh{animation:sk .4s}
+@keyframes sk{25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+.cd{width:26px;height:120px;background:linear-gradient(90deg,#f6d6e8,#fff,#f6d6e8);border-radius:4px;position:relative;margin:60px auto 24px;box-shadow:0 0 50px #ffd36e66}
+.fm{position:absolute;left:3px;top:-46px;width:20px;height:46px;background:radial-gradient(ellipse at 50% 70%,#fff,#ffd36e 40%,#ff7a2a 70%,transparent);border-radius:50% 50% 50% 50%/65% 65% 35% 35%;animation:fk .25s infinite alternate;filter:drop-shadow(0 0 22px #ffb347)}
+.out .fm{display:none}
+@keyframes fk{to{transform:scale(1.15,.92) rotate(2deg)}}
+#lw{position:relative;width:100%;max-width:420px;height:50vh}
+.ln{position:absolute;width:64px;height:84px;background:radial-gradient(#fff3b0,#ff9a3c 60%,#c2410c);border-radius:14px 14px 22px 22px;box-shadow:0 0 40px #ff9a3c;cursor:pointer;animation:bb 3s ease-in-out infinite alternate;line-height:84px;font-size:26px}
+@keyframes bb{to{transform:translateY(-16px)}}
+.ln.fly{animation:fy 3s forwards}
+@keyframes fy{to{transform:translateY(-110vh);opacity:0}}
+#wb{min-height:56px;color:#ffd98a;font-size:22px;font-style:italic}
+.lt{background:#ffffff14;border:1px solid #ffd36e66;border-radius:16px;padding:20px;max-width:360px;text-align:left;white-space:pre-line;line-height:1.6;font-size:16px;backdrop-filter:blur(6px)}
+#gf{font-size:120px;cursor:pointer;animation:pu 1s infinite alternate;filter:drop-shadow(0 0 30px #ff7ab8)}
+@keyframes pu{to{transform:scale(1.12) rotate(4deg)}}
+#p6{justify-content:flex-end;padding-bottom:14px;background:linear-gradient(transparent 45%,#05030fe6 78%)}
+#p6 p{font-size:15px;margin:3px}
+#p6 .b{padding:9px 16px;font-size:14px;margin:4px}
+#fl{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:8}
+</style></head><body>
+<canvas id="c"></canvas><div id="cap"></div><div id="bar"></div><div id="fl"></div>
+<button class="b" id="mus" onclick="mus()">🎵 Music</button>
+
+<div class="p on" id="p0">
+<div class="lk">🔒</div><h1>For Sidra</h1><p>Enter the password to begin.</p>
+<input id="pw" type="password" placeholder="Password" autocomplete="off">
+<div><button class="b" onclick="tg()">Show / Hide</button><button class="b" onclick="unlock()">Unlock</button></div><div id="er"></div>
+</div>
+
+<div class="p" id="p1"><h1>Your Surprises Are Ready</h1><p>Dear Sidra, a few special moments are waiting for you.</p><button class="b" onclick="st(2)">Open Your Surprises ✨</button></div>
+
+<div class="p" id="p2"><h1>Make a Wish, Sidra</h1>
+<div class="cd" id="cd"><div class="fm"></div></div>
+<div><button class="b" id="bl" onclick="blow()">Blow the Candle 💨</button><button class="b" id="mc" onclick="mic()">Use Real Breath 🎤</button></div><p id="mt" style="font-size:14px"></p></div>
+
+<div class="p" id="p3"><h1>Five Wishes for You</h1><p>Tap each lantern.</p>
+<div id="lw"></div><div id="wb"></div><button class="b h" id="n3" onclick="st(4)">Next</button></div>
+
+<div class="p" id="p4"><h1>A Letter for You 💌</h1>
+<button class="b" id="ob" onclick="openL()">Open the Letter</button>
+<div class="lt h" id="lt">Dear Sidra,
+
+On your special day, I wish you endless happiness, good health, success and beautiful moments.
+
+May every new morning bring fresh opportunities, every dream find its way to reality, and every challenge make you stronger.
+
+Always keep smiling and continue being the wonderful person you are.
+
+Happy Birthday, Sidra!
+
+Your Well-Wisher,
+Hassan Azhar</div>
+<button class="b h" id="sb" onclick="sec()">One more secret 🔏</button>
+<p class="h" id="sm">Sidra, you are a truly special person. May your journey always be filled with happiness, achievements and beautiful memories.</p>
+<button class="b h" id="n4" onclick="st(5)">Next</button></div>
+
+<div class="p" id="p5"><h1>One Last Surprise 🎀</h1><div id="gf" onclick="gift()">🎁</div><p>Tap the gift.</p></div>
+
+<div class="p" id="p6">
+<p>May your life be filled with happiness, success, peace and countless beautiful memories.</p>
+<p>Keep shining, keep smiling and always believe in yourself.</p>
+<p><b>Best Wishes, Hassan Azhar</b></p>
+<div><button class="b" onclick="dt()">Special Date</button><button class="b" onclick="save()">Save as Image</button><button class="b" onclick="location.reload()">Replay</button></div></div>
+
+<script>
+const $=q=>document.querySelector(q),cv=$('#c'),x=cv.getContext('2d')
+let W,H,mx=-999,my=-999,AC,mOn=0,mT,ni=0,warp=.004,show=0,lc=0
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight}rs();onresize=rs
+onpointermove=onpointerdown=e=>{mx=e.clientX;my=e.clientY};onpointerup=()=>{mx=my=-999}
+// audio
+function tone(f,d,t,v){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type=t||'sine';o.frequency.value=f;g.gain.setValueAtTime(v||.07,AC.currentTime);g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+(d||.5));o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+(d||.5))}catch(e){}}
+function sweep(){try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.type='sawtooth';o.frequency.setValueAtTime(60,AC.currentTime);o.frequency.exponentialRampToValueAtTime(900,AC.currentTime+3);g.gain.setValueAtTime(.001,AC.currentTime);g.gain.linearRampToValueAtTime(.05,AC.currentTime+2.5);g.gain.linearRampToValueAtTime(.001,AC.currentTime+3.2);o.connect(g);g.connect(AC.destination);o.start();o.stop(AC.currentTime+3.3)}catch(e){}}
+const N5=[261,294,330,392,440,523,659,784]
+function mus(f){const b=$('#mus');if(mOn&&!f){clearInterval(mT);mOn=0;b.textContent='🎵 Music';return}if(mOn)return;mOn=1;b.textContent='⏸ Pause';tone(130,8,'sine',.05);mT=setInterval(()=>{tone(N5[Math.random()*8|0],1.6,'triangle',.05);if(ni++%8==0)tone(130,4,'sine',.04)},520)}
+const chime=()=>[523,659,784,1047,1319].forEach((f,i)=>setTimeout(()=>tone(f,.8,'triangle',.08),i*110))
+function say(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.rate=.85;u.pitch=1.2;speechSynthesis.speak(u)}catch(e){}}
+// stars
+const ST=Array.from({length:380},()=>({x:Math.random()*2-1,y:Math.random()*2-1,z:Math.random()}))
+// particles
+const N=1500,COL=['#ffd36e','#ff7ab8','#ffffff','#c9a0ff']
+const PS=Array.from({length:N},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:0,vy:0,tx:0,ty:0,t:0,c:COL[Math.random()*4|0]}))
+function assign(A){PS.forEach((p,i)=>{const a=A[A.length>N?(i*A.length/N)|0:i%A.length];p.tx=a[0];p.ty=a[1];p.t=1})}
+function frm(L){const o=document.createElement('canvas');o.width=W;o.height=H;const g=o.getContext('2d'),n=L.length,fs=Math.min(H/(n+1)*.9,W*.9/Math.max(...L.map(l=>l.length))/.62);g.fillStyle='#fff';g.textAlign='center';g.textBaseline='middle';g.font='bold '+fs+'px Georgia';L.forEach((l,i)=>g.fillText(l,W/2,H/2+(i-(n-1)/2)*fs*1.15));const d=g.getImageData(0,0,W,H).data,A=[];for(let y=0;y<H;y+=4)for(let q=0;q<W;q+=4)if(d[(y*W+q)*4+3]>128)A.push([q,y]);assign(A)}
+function heart(){const A=[],sc=Math.min(W*.8/32,H*.45/30);for(let k=1;k>0;k-=.12)for(let t=0;t<6.28;t+=.05)A.push([W/2+16*Math.pow(Math.sin(t),3)*sc*k,H/2-(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))*sc*k]);assign(A)}
+function explode(){PS.forEach(p=>{p.t=0;const a=Math.random()*6.28,s=Math.random()*18+4;p.vx=Math.cos(a)*s;p.vy=Math.sin(a)*s})}
+// fireworks
+const F=[]
+function boom(a,b){const c='hsl('+Math.random()*360+',100%,60%)';for(let i=0;i<50;i++){const r=Math.random()*6.28,s=Math.random()*5+1;F.push({x:a,y:b,vx:Math.cos(r)*s,vy:Math.sin(r)*s,l:70,c})}}
+function burst(n){for(let i=0;i<(n||4);i++)setTimeout(()=>boom(W*(.1+Math.random()*.8),H*(.1+Math.random()*.5)),i*200)}
+// render loop
+;(function lp(){x.globalCompositeOperation='source-over';x.fillStyle='rgba(5,3,20,'+(warp>.02?.3:.2)+')';x.fillRect(0,0,W,H)
+x.globalCompositeOperation='lighter'
+for(const s of ST){const pz=s.z;s.z-=warp;if(s.z<=.01){s.x=Math.random()*2-1;s.y=Math.random()*2-1;s.z=1;continue}const k=W*.5,px=W/2+s.x/pz*k,py=H/2+s.y/pz*k,sx=W/2+s.x/s.z*k,sy=H/2+s.y/s.z*k;x.strokeStyle='rgba(255,230,255,'+(1-s.z)+')';x.lineWidth=1+(1-s.z)*1.5;x.beginPath();x.moveTo(px,py);x.lineTo(sx+.5,sy+.5);x.stroke()}
+if(show)for(const p of PS){if(p.t){p.vx+=(p.tx-p.x)*.025;p.vy+=(p.ty-p.y)*.025;p.vx*=.86;p.vy*=.86}else{p.vy+=.03;p.vx*=.985;p.vy*=.985}const dx=p.x-mx,dy=p.y-my,d=dx*dx+dy*dy;if(d<9000){const f=(9000-d)/9000*5,r=Math.sqrt(d)+1;p.vx+=dx/r*f;p.vy+=dy/r*f}p.x+=p.vx;p.y+=p.vy;x.fillStyle=p.c;x.fillRect(p.x,p.y,2.5,2.5)}
+for(let i=F.length-1;i>=0;i--){const p=F[i];p.x+=p.vx;p.y+=p.vy;p.vy+=.06;p.l--;x.globalAlpha=Math.max(p.l/70,0);x.fillStyle=p.c;x.fillRect(p.x,p.y,3,3);if(p.l<=0)F.splice(i,1)}
+x.globalAlpha=1;requestAnimationFrame(lp)})()
+// helpers
+function st(n){document.querySelectorAll('.p').forEach(e=>e.classList.remove('on'));$('#p'+n).classList.add('on');$('#bar').style.width=(n+1)/7*100+'%'}
+function cap(t){const e=$('#cap');e.classList.remove('on');setTimeout(()=>{e.textContent=t;if(t)e.classList.add('on')},300)}
+const T=(m,f)=>setTimeout(f,m)
+function flash(){$('#fl').animate([{opacity:1},{opacity:0}],900)}
+// lock
+function tg(){const p=$('#pw');p.type=p.type=='password'?'text':'password'}
+function unlock(){if($('#pw').value==='09112006'){$('#er').textContent='';const r=document.createElement('div');r.className='ring';document.body.appendChild(r);$('.lk').textContent='🔓';mus(1);sweep();T(700,()=>{document.querySelectorAll('.p').forEach(e=>e.classList.remove('on'));cinema()})}else{$('#er').textContent='That password is not correct. Please try again.';const p=$('#pw');p.classList.remove('sh');void p.offsetWidth;p.classList.add('sh');tone(160,.3,'sawtooth',.06)}}
+$('#pw').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()})
+// cinema
+function cinema(){let w=setInterval(()=>{warp=Math.min(warp*1.07+.0006,.08)},50);cap('Sidra...')
+T(2300,()=>cap('Someone planned something special for you'))
+T(5200,()=>{clearInterval(w);w=setInterval(()=>{warp*=.9;if(warp<.004){warp=.004;clearInterval(w)}},50);cap('');show=1;frm(['SIDRA']);say('Sidra');chime();$('#bar').style.width='14%'})
+T(10000,()=>{frm(['HAPPY','BIRTHDAY']);burst(6);say('Happy Birthday');flash()})
+T(15500,()=>{heart();cap('Touch the stars. They move for you.');burst(3)})
+T(21000,()=>{cap('');st(1)})}
+// candle
+function blow(){$('#cd').classList.add('out');$('#bl').classList.add('h');$('#mc').classList.add('h');$('#mt').textContent='Your wish is on its way...';tone(300,.4,'sine',.08);flash();explode();burst(6);say('Make your wish Sidra');T(2800,()=>{st(3);lant()})}
+function mic(){const m=$('#mt');if(!navigator.mediaDevices){m.textContent='Microphone not available. Please use the button.';return}navigator.mediaDevices.getUserMedia({audio:true}).then(s=>{const a=new(window.AudioContext||window.webkitAudioContext)(),n=a.createAnalyser();n.fftSize=512;a.createMediaStreamSource(s).connect(n);const d=new Uint8Array(512);m.textContent='Blow gently into your microphone...';const ck=()=>{n.getByteTimeDomainData(d);let v=0;d.forEach(q=>v=Math.max(v,Math.abs(q-128)));if(v>70){s.getTracks().forEach(t=>t.stop());blow()}else requestAnimationFrame(ck)};ck()}).catch(()=>{m.textContent='Microphone not allowed. Please use the button.'})}
+// lanterns
+const WS=["May you achieve every dream.","May happiness always surround you.","May success follow your hard work.","May your smile never fade.","May every year become more beautiful."]
+function lant(){lc=0;show=0;const P=[[4,8],[26,50],[46,14],[64,56],[80,24]];$('#lw').innerHTML=P.map((q,i)=>'<div class="ln" style="left:'+q[0]+'%;top:'+q[1]+'%;animation-delay:'+i*.4+'s" onclick="lt(this,'+i+')">✨</div>').join('')}
+function lt(e,i){if(e.classList.contains('fly'))return;const r=e.getBoundingClientRect();boom(r.left+32,r.top+40);tone(600+i*120,.5,'triangle',.09);$('#wb').textContent=WS[i];e.classList.add('fly');if(++lc==5)T(2500,()=>$('#n3').classList.remove('h'))}
+// letter
+function openL(){$('#ob').classList.add('h');const L=$('#lt'),t=L.textContent;L.textContent='';L.classList.remove('h');chime();let i=0;const iv=setInterval(()=>{i+=2;L.textContent=t.slice(0,i);if(i>=t.length){clearInterval(iv);$('#sb').classList.remove('h')}},30)}
+function sec(){$('#sb').classList.add('h');$('#sm').classList.remove('h');$('#n4').classList.remove('h');burst(3);chime()}
+// gift and final
+function gift(){$('#gf').style.pointerEvents='none';document.body.animate([{transform:'translate(0)'},{transform:'translate(-8px,6px)'},{transform:'translate(8px,-6px)'},{transform:'translate(0)'}],{duration:300,iterations:4});sweep();T(1200,()=>{flash();show=1;explode();burst(8);chime();st(6)});T(1900,()=>{frm(['HAPPY','BIRTHDAY','SIDRA']);say('Happy Birthday Sidra. You are a wonderful person.')});setInterval(()=>{if($('#p6').classList.contains('on'))burst(2)},2500)}
+function dt(){frm(['9','NOVEMBER']);burst(5);chime();T(5000,()=>frm(['HAPPY','BIRTHDAY','SIDRA']))}
+function save(){const c=document.createElement('canvas');c.width=900;c.height=1100;const g=c.getContext('2d'),r=g.createLinearGradient(0,0,900,1100);r.addColorStop(0,'#1a0b3a');r.addColorStop(1,'#5b1d6b');g.fillStyle=r;g.fillRect(0,0,900,1100);g.textAlign='center';g.fillStyle='#ffd98a';g.shadowColor='#ff7ab8';g.shadowBlur=30;g.font='bold 80px Georgia';g.fillText('HAPPY',450,260);g.fillText('BIRTHDAY',450,360);g.font='bold 120px Georgia';g.fillText('SIDRA',450,520);g.shadowBlur=0;g.fillStyle='#fff';g.font='32px Georgia';['May your life be filled with happiness,','success, peace and countless','beautiful memories.','Keep shining, keep smiling and','always believe in yourself.','','Best Wishes,','Hassan Azhar'].forEach((l,i)=>g.fillText(l,450,650+i*50));const a=document.createElement('a');a.download='happy-birthday-sidra.png';a.href=c.toDataURL('image/png');a.click()}
+</script></body></html>
